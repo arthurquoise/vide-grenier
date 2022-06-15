@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  web:
+    image: php7.4-apache:projet
+    container_name: projet-php-apache
+    ports:
+      # local:container
+      - "1337:80"
+    environment: 
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+      - COMPOSER_ALLOW_SUPERUSER=1
+    volumes:
+      # Volume stockant les fichiers web du projet
+      - ./:/var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - db
+    networks:
+      - default
+
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: videgrenierenligne
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      # - persistent:/var/lib/mysql
+    networks:
+      - default
+
+# volumes:
+#     persistent:
