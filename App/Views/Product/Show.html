@@ -36,10 +36,26 @@
                         <h4>Description:</h4>
                         <p>{{article.description}}</p>
                     </div>
+                    
                     <div class="u-area mt-small">
+                        <h1> Contact </h1>
+                        <form method="post" action="">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" name="email"
+                                    placeholder="exemple@gmail.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="e2">Message</label>
+                                <textarea class="form-control" name="message" id="e2" rows="3"></textarea>
+                            </div>
 
-                    <a name="submit" href="mailto:{{article.email}}" class="btn btn-primary u-btn">Contacter {{article
-                        .username}}</a>
+                            <button type="submit" name="sendMail" class="btn btn-cv1">Contacter {{article
+                                .username}}</button>
+
+                            <!-- <a name="submit" href="mailto:{{article.email}}" class="btn btn-primary u-btn">Contacter {{article
+                                .username}}</a> -->
+                        </form>
 
                     </div>
                 </div>
