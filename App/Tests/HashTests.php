@@ -5,7 +5,7 @@ namespace App\Tests;
 use PHPUnit\Framework\TestCase;
 use App\Utility\Hash;
 
-class HashTest extends TestCase
+class HashTests extends TestCase
 {
     /** @test */
     public function can_generate_salt_null() {
