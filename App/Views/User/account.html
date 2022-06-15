@@ -15,6 +15,24 @@
         </div>
     </div>
 
+    {% set totalView = 0  %}
+    {% set totalArticles = 0 %}
+
+    {% for article in articles %}
+        {% set totalView = totalView + article.views %}
+        {% set totalArticles = totalArticles + 1 %}
+    {% endfor %}
+
+    <div style="text-align: center; width: 100vw; margin-top: 1vw;">
+        <h4>STATISTIQUES :<h4>
+    </div>
+
+    <div style="text-align: center; width: 100vw;">
+        <p>Nombre de vues totales : {{ totalView }} vues</p>
+    </div>
+    <div style="text-align: center; width: 100vw;">
+        <p>Nombre de produits : {{ totalArticles }}</p>
+    </div>
 
     <div class="content-wrapper">
         <div class="container">
