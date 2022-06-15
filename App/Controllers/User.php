@@ -53,6 +53,7 @@ class User extends \Core\Controller
 
             $this->register($f);
             // TODO: Rappeler la fonction de login pour connecter l'utilisateur
+            $this->loginAction();
         }
 
         View::renderTemplate('User/register.html');
