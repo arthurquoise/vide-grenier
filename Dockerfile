@@ -18,8 +18,8 @@ RUN apt-get update -qq && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Extensions MySQL pour PHP
-RUN docker-php-ext-install mysqli pdo pdo_mysql
+# PHP Extensions
+RUN docker-php-ext-install -j$(nproc) opcache pdo_mysql
 
 #Install NodeJS
 RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
@@ -34,6 +34,7 @@ COPY conf/vhost.conf /etc/apache2/sites-enabled/docker-vhost.conf
 # RUN service apache2 restart
 
 COPY . /var/www/html/
+
 RUN composer install
 
 RUN npm install
