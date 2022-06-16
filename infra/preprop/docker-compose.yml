@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  web:
+    image: php7.4-apache:projet
+    ports:
+      # local:container
+      - "1337:80"
+    environment: 
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+      - COMPOSER_ALLOW_SUPERUSER=1
+    # volumes:
+    #   # Volume stockant les fichiers web du projet
+    #   - ./:/var/www/html
+    build:
+      context: .
+      dockerfile: Dockerfile
+    links:
+      - db
+
+  db:
+    image: mysql
+    # ports:
+    #   - "3306:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    restart: always    
+    environment:
+      MYSQL_DATABASE: videgrenierenligne
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      LC_ALL: en_US.UTF-8
+      LANG: en_US.UTF-8
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: pma
+  #   links:
+  #     - db
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_PORT: 3306
+  #     PMA_ARBITRARY: 1
+  #   restart: always
+  #   ports:
+  #     - 8081:80

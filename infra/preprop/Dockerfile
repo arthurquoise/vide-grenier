@@ -28,7 +28,7 @@ RUN apt-get update \
  nodejs
 
 # Virtualhost
-COPY conf/vhost.conf /etc/apache2/sites-enabled/docker-vhost.conf
+# COPY conf/vhost.conf /etc/apache2/sites-enabled/docker-vhost.conf
 
 # Redémarrage de Apache pour tenir compte des modifications + modules installés
 # RUN service apache2 restart
@@ -38,15 +38,11 @@ COPY conf/vhost.conf /etc/apache2/sites-enabled/docker-vhost.conf
 # Dossier de travail
 WORKDIR /var/www/html
 
-RUN git clone https://github.com/arthurquoise/vide-grenier
+RUN git clone https://github.com/arthurquoise/vide-grenier .
 
-RUN rm -rf vendor
-
-RUN rm composer.lock
+RUN git chekout release
 
 RUN composer install
-
-RUN composer show
 
 RUN npm install
 

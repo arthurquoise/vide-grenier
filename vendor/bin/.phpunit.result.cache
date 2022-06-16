@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":[]}
+{"version":1,"defects":[],"times":{"App\\Tests\\HashTests::can_generate_salt_null":0.058,"App\\Tests\\HashTests::can_generate_salt_negative_lenght":0,"App\\Tests\\HashTests::can_generate_salt_decimal_lenght":0,"App\\Tests\\HashTests::can_generate_salt_random_lenght":0,"App\\Tests\\HashTests::can_generate_hash_with_two_strings":0,"App\\Tests\\HashTests::can_generate_hash_with_null_salt":0}}
